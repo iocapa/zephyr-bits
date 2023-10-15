@@ -1,0 +1,43 @@
+description: Raspberry Pi Pico PIO jtag controller
+
+compatible: "raspberrypi,pico-pio-jtag"
+
+include: [
+  "raspberrypi,pico-pio-device.yaml",
+  pinctrl-device.yaml,
+  base.yaml
+]
+
+properties:
+  trst-gpios:
+    type: phandle-array
+    description: |
+      Test reset pin.
+
+  default-frequency:
+    type: int
+    description: |
+      Default clock frequency
+
+  srst-gpios:
+    type: phandle-array
+    description: |
+      System reset pin.
+
+  dmas:
+    required: true
+    description: |
+      DMA channels for TX and RX
+
+  dma-names:
+    required: true
+    description: |
+      DMA channels. Needs to be: "tx", "rx".
+
+  queue-size:
+    type: int
+    default: 32
+    description: |
+      Number of 32 bit words for the DMA queue.
+      Each instruction requires 2 + ((bits_to_shift + 31) / 32) words.
+      Should be adjusted based on measurements.

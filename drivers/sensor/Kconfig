@@ -1,0 +1,5 @@
+if SENSOR
+
+rsource "adc_voltage_divider/Kconfig"
+
+endif # SENSOR

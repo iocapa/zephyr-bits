@@ -1,0 +1,20 @@
+# Copyright (c) 2023 Ionut Pavel
+# SPDX-License-Identifier: Apache-2.0
+
+config JTAG_RPI_PICO_PIO
+	bool "Raspberry Pi PIO jtag controller driver"
+	depends on DT_HAS_RASPBERRYPI_PICO_PIO_JTAG_ENABLED
+	select JTAG_SUPPORT_ASYNC
+	select DMA
+	default y
+
+if JTAG_RPI_PICO_PIO
+
+config JTAG_RPI_PICO_MINIMAL_INSTR
+	bool "Reduce instruction count mode"
+	help
+	  This reduces instruction usage a bit but introduces
+	  uneven clock pulses and relative lower throughput.
+	  Say Y only if drivers fail initialization.
+
+endif # JTAG_RPI_PICO_PIO

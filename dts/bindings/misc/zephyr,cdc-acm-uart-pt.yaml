@@ -1,0 +1,13 @@
+# Copyright (c) 2021 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+description: USB CDC ACM uart passthrough
+
+compatible: "zephyr,cdc-acm-uart-pt"
+
+include: "zephyr,cdc-acm-uart.yaml"
+
+properties:
+  uart:
+    required: true
+    type: phandle

@@ -1,0 +1,2 @@
+add_subdirectory_ifdef(CONFIG_USB_CDC_ACM_PT		cdc_acm_pt)
+add_subdirectory_ifdef(CONFIG_USB_CMSIS_DAP		cmsis_dap)

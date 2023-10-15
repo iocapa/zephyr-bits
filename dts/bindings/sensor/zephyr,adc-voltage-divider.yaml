@@ -1,0 +1,10 @@
+description: "ADC based resistive divider voltage sensor"
+
+compatible: "zephyr,adc-voltage-divider"
+
+include:
+  - name: sensor-device.yaml
+  - name: voltage-divider.yaml
+    property-blocklist:
+    - power-gpios
+

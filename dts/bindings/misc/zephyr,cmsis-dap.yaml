@@ -1,0 +1,26 @@
+description: CMSIS-DAP USB interface
+
+compatible: "zephyr,cmsis-dap"
+
+on-bus: usb
+
+properties:
+  iface-name:
+    type: string
+    description: |
+      Interface name (will appear when enumerated)
+
+  jtag:
+    required: true
+    type: phandle
+
+  disable-jtag:
+    type: boolean
+    description: |
+      Disable JTAG debug port
+
+  disable-swd:
+    type: boolean
+    description: |
+      Disable SWD debug port
+

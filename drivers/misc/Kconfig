@@ -1,0 +1,9 @@
+# Copyright (c) 2022 Ionut Catalin Pavel
+# SPDX-License-Identifier: Apache-2.0
+
+menu "Misc Drivers"
+
+rsource "cdc_acm_pt/Kconfig"
+rsource "cmsis_dap/Kconfig"
+
+endmenu

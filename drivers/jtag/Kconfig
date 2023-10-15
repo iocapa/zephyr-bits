@@ -1,0 +1,41 @@
+# Serial driver configuration options
+
+# Copyright (c) 2014-2015 Wind River Systems, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig JTAG
+	bool "jtag drivers"
+	help
+	  Enable options for jtag drivers.
+
+if JTAG
+
+comment "Capabilities"
+
+config JTAG_SUPPORT_ASYNC
+	bool
+	help
+	  This is an option to be enabled by individual jtag driver
+	  to signal that the driver and hardware supports async operation.
+
+config JTAG_ASYNC_API
+	bool "Asynchronous UART API"
+	depends on JTAG_SUPPORT_ASYNC
+	help
+	  This option enables asynchronous JTAG API.
+
+config JTAG_INIT_PRIORITY
+	int "jtag init priority"
+	default KERNEL_INIT_PRIORITY_DEVICE
+	help
+	  jtag driver device initialization priority.
+
+module = JTAG
+module-str = jtag
+source "subsys/logging/Kconfig.template.log_config"
+
+comment "JTAG drivers"
+
+rsource "Kconfig.rpi_pico_pio"
+
+endif # JTAG

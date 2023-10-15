@@ -1,0 +1,65 @@
+# Copyright (c) 2023 Ionut Catalin Pavel
+# SPDX-License-Identifier: Apache-2.0
+
+config USB_CMSIS_DAP
+	bool "Zephyr CMSIS-DAP v2 USB interface"
+	default y
+	depends on DT_HAS_ZEPHYR_CMSIS_DAP_ENABLED
+	select USB_DEVICE_STACK
+	help
+	  Setting this value will enable driver support 
+	  for a CMSIS-DAP v2 USB interface
+
+if USB_CMSIS_DAP
+
+config USB_CMSIS_DAP_MSOS20_BOS_SUPPORT
+	bool "Enable MS-OS 2.0 BOS descriptor support"
+	select USB_DEVICE_BOS
+	help
+	  Enable MS-OS 2.0 automatic driver installation based on GUIDs
+
+config USB_CMSIS_DAP_THREAD_STACK_SIZE
+	int "CMSIS-DAP thread stack size"
+	default 1024
+	help
+	  Stack size for the CMSIS-DAP instance thread
+
+config USB_CMSIS_DAP_THREAD_PRIORITY
+	int "CMSIS-DAP thread stack priority"
+	default 10
+	help
+	  Priority for the CMSIS-DAP instance thread
+
+config USB_CMSIS_DAP_BULK_EP_MPS
+	int
+	default 512 if USB_DC_HAS_HS_SUPPORT
+	default 64
+	help
+	  CMSIS-DAP bulk endpoints size
+
+config USB_CMSIS_DAP_PACKET_SIZE
+	int "CMSIS-DAP packet size"
+	default 512 if USB_DC_HAS_HS_SUPPORT
+	default 64
+	help
+	  CMSIS-DAP Packet size (in bytes).
+
+config USB_CMSIS_DAP_PACKET_COUNT
+	int "CMSIS-DAP packet count"
+	range 1 127
+	default 4
+	help
+	  CMSIS-DAP Packet count (in packets).
+
+config USB_CMIS_DAP_MAX_JTAG_INSTR
+	int "Maximum number of sequential JTAG instructions"
+	range 1 128
+	default 24
+	help
+	  Size of the maximum JTAG instruction array.
+
+module = USB_CMSIS_DAP
+module-str = usb-cmsis-dap
+source "subsys/logging/Kconfig.template.log_config"
+
+endif

@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config ADC_VOLTAGE_DIVIDER
+	bool "ADC based voltage divider sensor"
+	default y
+	depends on DT_HAS_ZEPHYR_ADC_VOLTAGE_DIVIDER_ENABLED
+	depends on ADC
+	help
+	  Enable driver for ADC resistive divider voltage sensor
